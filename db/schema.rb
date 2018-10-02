@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2018_10_02_181329) do
     t.bigint "invoice_id"
     t.integer "quantity"
     t.integer "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
     t.index ["item_id"], name: "index_invoice_items_on_item_id"
   end
