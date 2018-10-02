@@ -8,5 +8,6 @@ RSpec.describe Item, type: :model do
   end
   describe 'Relationships' do
     it {should belong_to(:merchant)}
+    it {should have_many(:invoices).through(:invoice_items)}
   end
 end
