@@ -6,12 +6,20 @@ class Merchant < ApplicationRecord
 
   def self.most_revenue(limit = 5)
     select("merchants.*, sum(invoice_items.quantity*invoice_items.unit_price) AS revenue")
-    .joins(:invoices)
-    .joins("INNER JOIN invoice_items ON invoices.id=invoice_items.invoice_id")
+    .joins(:invoices).joins("INNER JOIN invoice_items ON invoices.id=invoice_items.invoice_id")
     .joins("INNER JOIN transactions ON invoices.id=transactions.invoice_id")
-    .where(transactions: {result: "success"})
+    .merge(Transaction.unscoped.successful)
     .group(:id)
     .order("revenue DESC")
     .limit(limit)
+  end
+
+  def self.all_revenue_by_date(date)
+    joins(:invoices)
+    .joins("INNER JOIN invoice_items ON invoices.id=invoice_items.invoice_id")
+    .joins("INNER JOIN transactions ON invoices.id=transactions.invoice_id")
+    .merge(Transaction.unscoped.successful)
+    .where(invoices: {updated_at: "#{date}"})
+    .sum("invoice_items.quantity*invoice_items.unit_price")
   end
 end

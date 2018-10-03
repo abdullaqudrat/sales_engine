@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       namespace :merchants do
         get '/find_all', to: 'find#index'
         get '/find', to: 'find#show'
-        get '/most_revenue', to: 'revenue#index'
-        get '/revenue', to: 'revenue#show'
+        get '/most_revenue', to: 'most_revenue#index'
+        get '/revenue', to: 'revenue#index'
       end
       resources :merchants, only: [:index, :show]
     end

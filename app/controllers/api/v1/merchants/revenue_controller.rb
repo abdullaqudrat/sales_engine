@@ -1,10 +1,9 @@
 class Api::V1::Merchants::RevenueController < ApplicationController
 
   def index
-    render json: Merchant.most_revenue(params[:quantity])
+    render json: Merchant.all_revenue_by_date(params[:date])
   end
 
   def show
-    render json: Merchant.most_revenue_by_date(params[:date])
   end
 end
