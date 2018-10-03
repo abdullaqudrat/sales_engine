@@ -14,6 +14,16 @@ class Merchant < ApplicationRecord
     .limit(limit)
   end
 
+  def self.most_items_sold(limit = 5)
+    select("merchants.*, sum(invoice_items.quantity) AS total_quantity")
+    .joins(:invoices).joins("INNER JOIN invoice_items ON invoices.id=invoice_items.invoice_id")
+    .joins("INNER JOIN transactions ON invoices.id=transactions.invoice_id")
+    .merge(Transaction.unscoped.successful)
+    .group(:id)
+    .order("total_quantity DESC")
+    .limit(limit)
+  end
+
   def self.all_revenue_by_date(date)
     joins(:invoices)
     .joins("INNER JOIN invoice_items ON invoices.id=invoice_items.invoice_id")
