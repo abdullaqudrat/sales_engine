@@ -94,4 +94,34 @@ RSpec.describe Merchant, type: :model do
       end
     end
   end
+  describe 'instance methods' do
+    describe '#total_revenue' do
+      it 'should return X top ranked merchants by revenue' do
+        merchant = create(:merchant)
+        c_1, c_2, c_3, c_4, c_5 = create_list(:customer, 5)
+        i_1 = create(:item, unit_price: 9000, merchant: merchant)
+        i_2 = create(:item, unit_price: 5000, merchant: merchant)
+        i_3 = create(:item, unit_price: 1000, merchant: merchant)
+        i_4 = create(:item, unit_price: 1500, merchant: merchant)
+        i_5 = create(:item, unit_price: 9999, merchant: merchant)
+        in_1 = create(:invoice, merchant: merchant, customer: c_1)
+        in_2 = create(:invoice, merchant: merchant, customer: c_2)
+        in_3 = create(:invoice, merchant: merchant, customer: c_3)
+        in_4 = create(:invoice, merchant: merchant, customer: c_4)
+        in_5 = create(:invoice, merchant: merchant, customer: c_5, status: "cancelled")
+        create(:transaction, invoice: in_1)
+        create(:transaction, invoice: in_2)
+        create(:transaction, invoice: in_3)
+        create(:transaction, invoice: in_4)
+        create(:transaction, invoice: in_5, result: "failed")
+        create(:invoice_item, item: i_1, invoice: in_1, quantity: 2, unit_price: i_1.unit_price)
+        create(:invoice_item, item: i_2, invoice: in_2, quantity: 2, unit_price: i_2.unit_price)
+        create(:invoice_item, item: i_3, invoice: in_3, quantity: 2, unit_price: i_3.unit_price)
+        create(:invoice_item, item: i_4, invoice: in_4, quantity: 1, unit_price: i_4.unit_price)
+        create(:invoice_item, item: i_5, invoice: in_5, quantity: 1, unit_price: i_5.unit_price)
+
+        expect(merchant.total_revenue).to eq(31500)
+      end
+    end
+  end
 end
