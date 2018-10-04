@@ -46,5 +46,4 @@ describe "Merchants API" do
     expect(merchants[0]["id"]).to eq(@merch_1.id)
     expect(merchants[1]["name"]).to eq(@merch_2.name)
   end
-
 end
