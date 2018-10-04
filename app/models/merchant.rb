@@ -3,6 +3,7 @@ class Merchant < ApplicationRecord
   has_many :invoices
   has_many :invoice_items, through: :invoices
   has_many :transactions, through: :invoices
+  has_many :customers, through: :invoices
 
   validates_presence_of :name
 
@@ -44,5 +45,9 @@ class Merchant < ApplicationRecord
     .merge(Transaction.unscoped.successful)
     .where(invoices: {updated_at: "#{date}"})
     .sum("invoice_items.quantity*invoice_items.unit_price")
+  end
+
+  def favorite_customer
+    
   end
 end
