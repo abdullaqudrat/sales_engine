@@ -2,6 +2,15 @@ class Api::V1::Merchants::SingleRevenueController < ApplicationController
 
   def show
     merchant = Merchant.find(params[:id])
-    render json: merchant.total_revenue
+    if params[:date]
+      render json: merchant.total_revenue_by_date(merchant_params)
+    else
+      render json: merchant.total_revenue
+    end
   end
+
+  private
+    def merchant_params
+      params.permit(:id, :date)
+    end
 end
