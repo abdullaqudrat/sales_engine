@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       namespace :merchants do
         get '/find_all', to: 'find#index'
         get '/find', to: 'find#show'
+        get '/random', to: 'random#show'
         get '/most_revenue', to: 'most_revenue#index'
         get '/most_items', to: 'most_items#index'
         get '/revenue', to: 'revenue#index'
