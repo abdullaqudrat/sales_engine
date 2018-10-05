@@ -18,7 +18,7 @@ describe "Merchants API" do
     get "/api/v1/merchants/#{id}"
 
     merchant = JSON.parse(response.body)
-
+    
     expect(response).to be_successful
     expect(merchant["id"]).to eq(id)
   end
