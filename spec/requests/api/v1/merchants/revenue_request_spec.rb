@@ -44,11 +44,11 @@ describe "Merchants API" do
     i_3 = create(:item, unit_price: 1000, merchant: m_5)
     i_4 = create(:item, unit_price: 1500, merchant: m_2)
     i_5 = create(:item, unit_price: 9999, merchant: m_4)
-    in_1 = create(:invoice, merchant: m_3, customer: c_1, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00")
-    in_2 = create(:invoice, merchant: m_1, customer: c_2, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-28 12:54:00")
-    in_3 = create(:invoice, merchant: m_5, customer: c_3, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00")
-    in_4 = create(:invoice, merchant: m_2, customer: c_4, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-28 12:54:00")
-    in_5 = create(:invoice, merchant: m_4, customer: c_5, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00", status: "cancelled")
+    in_1 = create(:invoice, merchant: m_3, customer: c_1, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC")
+    in_2 = create(:invoice, merchant: m_1, customer: c_2, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-28 12:54:00 UTC")
+    in_3 = create(:invoice, merchant: m_5, customer: c_3, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC")
+    in_4 = create(:invoice, merchant: m_2, customer: c_4, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-28 12:54:00 UTC")
+    in_5 = create(:invoice, merchant: m_4, customer: c_5, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC", status: "cancelled")
     create(:transaction, invoice: in_1)
     create(:transaction, invoice: in_2)
     create(:transaction, invoice: in_3)
@@ -60,8 +60,8 @@ describe "Merchants API" do
     create(:invoice_item, item: i_4, invoice: in_4, quantity: 1, unit_price: i_4.unit_price)
     create(:invoice_item, item: i_5, invoice: in_5, quantity: 1, unit_price: i_5.unit_price)
 
-    date_1 = "2018-10-27 12:54:00"
-    date_2 = "2018-10-28 12:54:00"
+    date_1 = "2018-10-27 12:54:00 UTC"
+    date_2 = "2018-10-28 12:54:00 UTC"
 
     get "/api/v1/merchants/revenue?date=#{date_1}"
 
@@ -114,11 +114,11 @@ describe "Merchants API" do
     i_3 = create(:item, unit_price: 1000, merchant: merchant)
     i_4 = create(:item, unit_price: 1500, merchant: merchant)
     i_5 = create(:item, unit_price: 9999, merchant: merchant)
-    in_1 = create(:invoice, merchant: merchant, customer: c_1, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00")
-    in_2 = create(:invoice, merchant: merchant, customer: c_2, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-28 12:54:00")
-    in_3 = create(:invoice, merchant: merchant, customer: c_3, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00")
-    in_4 = create(:invoice, merchant: merchant, customer: c_4, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-28 12:54:00")
-    in_5 = create(:invoice, merchant: merchant, customer: c_5, created_at: "2018-10-26 11:54:00", updated_at: "2018-10-27 12:54:00", status: "cancelled")
+    in_1 = create(:invoice, merchant: merchant, customer: c_1, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC")
+    in_2 = create(:invoice, merchant: merchant, customer: c_2, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-28 12:54:00 UTC")
+    in_3 = create(:invoice, merchant: merchant, customer: c_3, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC")
+    in_4 = create(:invoice, merchant: merchant, customer: c_4, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-28 12:54:00 UTC")
+    in_5 = create(:invoice, merchant: merchant, customer: c_5, created_at: "2018-10-26 11:54:00 UTC", updated_at: "2018-10-27 12:54:00 UTC", status: "cancelled")
     create(:transaction, invoice: in_1)
     create(:transaction, invoice: in_2)
     create(:transaction, invoice: in_3)
@@ -130,8 +130,8 @@ describe "Merchants API" do
     create(:invoice_item, item: i_4, invoice: in_4, quantity: 1, unit_price: i_4.unit_price)
     create(:invoice_item, item: i_5, invoice: in_5, quantity: 1, unit_price: i_5.unit_price)
 
-    date_1 = "2018-10-27 12:54:00"
-    date_2 = "2018-10-28 12:54:00"
+    date_1 = "2018-10-27 12:54:00 UTC"
+    date_2 = "2018-10-28 12:54:00 UTC"
 
     get "/api/v1/merchants/#{merchant.id}/revenue?date=#{date_1}"
 
