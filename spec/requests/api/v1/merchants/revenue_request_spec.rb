@@ -72,8 +72,8 @@ describe "Merchants API" do
     total_revenue_by_date_2 = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(total_revenue_by_date_1).to eq({"total_revenue" => "200.0"})
-    expect(total_revenue_by_date_2).to eq({"total_revenue" => "115.0"})
+    expect(total_revenue_by_date_1).to eq({"total_revenue" => "20000.0"})
+    expect(total_revenue_by_date_2).to eq({"total_revenue" => "11500.0"})
   end
   it "can get total revenue of merchant"  do
     merchant = create(:merchant)
@@ -104,7 +104,7 @@ describe "Merchants API" do
     total_revenue = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(total_revenue).to eq({"revenue"=>"315.0"})
+    expect(total_revenue).to eq({"revenue"=>"31500.0"})
   end
   it "can get total revenue of merchants by date"  do
     merchant = create(:merchant)
@@ -142,7 +142,7 @@ describe "Merchants API" do
     total_revenue_by_date_2 = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(total_revenue_by_date_1).to eq({"revenue"=>"200.0"})
-    expect(total_revenue_by_date_2).to eq({"revenue"=>"115.0"})
+    expect(total_revenue_by_date_1).to eq({"revenue"=>"20000.0"})
+    expect(total_revenue_by_date_2).to eq({"revenue"=>"11500.0"})
   end
 end
