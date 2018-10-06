@@ -15,8 +15,6 @@ describe "Items API" do
       expect(item["id"]).to_not eq(i_1.id)
       expect(item["id"]).to_not eq(i_3.id)
     end
-  end
-  describe "find controller" do
     it "should return items by name param" do
       i_1, i_2, i_3 = create_list(:item, 3)
 
@@ -30,8 +28,6 @@ describe "Items API" do
       expect(item["id"]).to_not eq(i_1.id)
       expect(item["id"]).to_not eq(i_3.id)
     end
-  end
-  describe "find controller" do
     it "should return items by created_at param" do
       i_1 = create(:item)
 
@@ -43,8 +39,6 @@ describe "Items API" do
 
       expect(item["id"]).to eq(i_1.id)
     end
-  end
-  describe "find controller" do
     it "should return items by updated_at param" do
       i_1 = create(:item)
 

@@ -15,8 +15,6 @@ describe "Items API" do
       expect(items[0]["id"]).to_not eq(i_1.id)
       expect(items[0]["id"]).to_not eq(i_3.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by name param" do
       i_1, i_2, i_3 = create_list(:item, 3)
 
@@ -30,8 +28,6 @@ describe "Items API" do
       expect(items[0]["id"]).to_not eq(i_1.id)
       expect(items[0]["id"]).to_not eq(i_3.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by created_at param" do
       i_1, i_2 = create_list(:item,2)
 
@@ -44,8 +40,6 @@ describe "Items API" do
       expect(items[0]["id"]).to eq(i_1.id)
       expect(items[1]["id"]).to eq(i_2.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by updated_at param" do
       i_1, i_2 = create_list(:item,2)
 
@@ -58,8 +52,6 @@ describe "Items API" do
       expect(items[0]["id"]).to eq(i_1.id)
       expect(items[1]["id"]).to eq(i_2.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by unit_price param" do
       i_1, i_2 = create_list(:item,2)
 
@@ -71,8 +63,6 @@ describe "Items API" do
 
       expect(items[0]["id"]).to eq(i_1.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by description param" do
       i_1, i_2 = create_list(:item,2)
 
@@ -84,8 +74,6 @@ describe "Items API" do
 
       expect(items[0]["id"]).to eq(i_1.id)
     end
-  end
-  describe "find_all controller" do
     it "should return items by merchant_id param" do
       i_1, i_2 = create_list(:item,2)
 
