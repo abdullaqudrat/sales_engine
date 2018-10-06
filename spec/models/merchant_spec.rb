@@ -153,7 +153,7 @@ RSpec.describe Merchant, type: :model do
       end
     end
     describe '#favorite_customer' do
-      xit 'should return customer that purchased most from merchant'  do
+      it 'should return customer that purchased most from merchant'  do
         merchant = create(:merchant)
         c_1, c_2 = create_list(:customer, 2)
         i_1 = create(:item, unit_price: 9000, merchant: merchant)
@@ -181,7 +181,7 @@ RSpec.describe Merchant, type: :model do
         create(:invoice_item, item: i_5, invoice: in_5, quantity: 1, unit_price: i_5.unit_price)
         create(:invoice_item, item: i_6, invoice: in_6, quantity: 1, unit_price: i_6.unit_price)
 
-        expect(merchant.favorite_customer).to eq(c_2)
+        expect(Merchant.favorite_customer(merchant.id)).to eq(c_2)
       end
     end
   end
