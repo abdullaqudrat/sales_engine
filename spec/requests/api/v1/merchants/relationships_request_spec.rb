@@ -12,7 +12,7 @@ describe "Merchants API" do
     expect(response).to be_successful
     expect(items.count).to eq(5)
   end
-  it "can get items associated with merchant" do
+  it "can get invoices associated with merchant" do
     merchant = create(:merchant)
     c_1, c_2, c_3, c_4, c_5 = create_list(:customer, 5)
     create(:invoice, merchant: merchant, customer: c_1)
