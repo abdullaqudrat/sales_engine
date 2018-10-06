@@ -38,7 +38,8 @@ describe "Invoice_item API" do
       expect(invoice_items[0]["id"]).to eq(i_2.id)
     end
     it "should return invoice_items by quantity param" do
-      i_1, i_2, i_3 = create_list(:invoice_item, 3)
+      i_1, i_3 = create_list(:invoice_item, 2)
+      i_2 = create(:invoice_item, quantity: 11)
 
       get "/api/v1/invoice_items/find_all?quantity=#{i_2.quantity}"
 
