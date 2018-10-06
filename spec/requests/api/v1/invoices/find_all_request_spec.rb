@@ -54,7 +54,7 @@ describe "Invoice API" do
     it "should return invoices by created_at param" do
       i_1, i_2 = create_list(:invoice,2)
 
-      get "/api/v1/invoices/find_all?created_at=#{t_1.created_at}"
+      get "/api/v1/invoices/find_all?created_at=#{i_1.created_at}"
 
       expect(response).to be_successful
 
@@ -66,7 +66,7 @@ describe "Invoice API" do
     it "should return invoices by updated_at param" do
       i_1, i_2 = create_list(:invoice,2)
 
-      get "/api/v1/invoices/find_all?updated_at=#{t_1.updated_at}"
+      get "/api/v1/invoices/find_all?updated_at=#{i_1.updated_at}"
 
       expect(response).to be_successful
 
