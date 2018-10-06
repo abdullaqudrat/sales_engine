@@ -59,4 +59,43 @@ describe "Items API" do
       expect(items[1]["id"]).to eq(i_2.id)
     end
   end
+  describe "find_all controller" do
+    it "should return items by unit_price param" do
+      i_1, i_2 = create_list(:item,2)
+
+      get "/api/v1/items/find_all?unit_price=#{i_1.unit_price}"
+
+      expect(response).to be_successful
+
+      items = JSON.parse(response.body)
+
+      expect(items[0]["id"]).to eq(i_1.id)
+    end
+  end
+  describe "find_all controller" do
+    it "should return items by description param" do
+      i_1, i_2 = create_list(:item,2)
+
+      get "/api/v1/items/find_all?description=#{i_1.description}"
+
+      expect(response).to be_successful
+
+      items = JSON.parse(response.body)
+
+      expect(items[0]["id"]).to eq(i_1.id)
+    end
+  end
+  describe "find_all controller" do
+    it "should return items by merchant_id param" do
+      i_1, i_2 = create_list(:item,2)
+
+      get "/api/v1/items/find_all?merchant_id=#{i_1.merchant_id}"
+
+      expect(response).to be_successful
+
+      items = JSON.parse(response.body)
+
+      expect(items[0]["id"]).to eq(i_1.id)
+    end
+  end
 end
