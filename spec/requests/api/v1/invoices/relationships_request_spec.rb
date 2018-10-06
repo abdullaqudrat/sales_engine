@@ -57,4 +57,18 @@ describe "Invoice API" do
     expect(Customer.all.count).to eq(6)
     expect(customers.count).to eq(1)
   end
+  it "can send merchants associated with the invoice" do
+    create_list(:merchant, 5)
+    merchant = create(:merchant)
+    invoice = create(:invoice, merchant: merchant)
+
+    get "/api/v1/invoices/#{invoice.id}/merchant"
+
+    expect(response).to be_successful
+
+    merchants = [JSON.parse(response.body)]
+
+    expect(Merchant.all.count).to eq(6)
+    expect(merchants.count).to eq(1)
+  end
 end
