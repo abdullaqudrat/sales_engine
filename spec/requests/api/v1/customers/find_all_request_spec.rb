@@ -29,7 +29,7 @@ describe "Customers API" do
       expect(customers[0]["id"]).to_not eq(i_3.id)
     end
     it "should return customers by last_name param" do
-      i_1, i_2, i_3 = create_list(:customer, 3)
+      i_2 = create(:customer)
 
       get "/api/v1/customers/find_all?last_name=#{i_2.last_name}"
 
@@ -38,8 +38,6 @@ describe "Customers API" do
       customers = JSON.parse(response.body)
 
       expect(customers[0]["id"]).to eq(i_2.id)
-      expect(customers[0]["id"]).to_not eq(i_1.id)
-      expect(customers[0]["id"]).to_not eq(i_3.id)
     end
     it "should return customers by created_at param" do
       i_1, i_2 = create_list(:customer,2)
