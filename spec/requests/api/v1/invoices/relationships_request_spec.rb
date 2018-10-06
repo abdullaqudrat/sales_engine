@@ -43,4 +43,18 @@ describe "Invoice API" do
     expect(Item.all.count).to eq(3)
     expect(items.count).to eq(1)
   end
+  it "can send customers associated with the invoice" do
+    create_list(:customer, 5)
+    customer = create(:customer)
+    invoice = create(:invoice, customer: customer)
+
+    get "/api/v1/invoices/#{invoice.id}/customer"
+
+    expect(response).to be_successful
+
+    customers = [JSON.parse(response.body)]
+
+    expect(Customer.all.count).to eq(6)
+    expect(customers.count).to eq(1)
+  end
 end
