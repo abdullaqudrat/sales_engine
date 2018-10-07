@@ -16,16 +16,15 @@ describe "Items API" do
     expect(invoice_items.count).to eq(5)
   end
   it "can send merchant associated with the item" do
-    merchant = create(:merchant)
-    item = create(:item, merchant: merchant)
+    merchant_1 = create(:merchant)
+    item = create(:item, merchant: merchant_1)
 
     get "/api/v1/items/#{item.id}/merchant"
 
     expect(response).to be_successful
 
-    merchants = [JSON.parse(response.body)]
+    merchant = JSON.parse(response.body)
 
-    expect(Merchant.all.count).to eq(6)
-    expect(merchants.count).to eq(1)
+    expect(merchant["id"]).to eq(merchant_1.id)
   end
 end
