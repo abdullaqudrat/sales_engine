@@ -21,15 +21,15 @@ RSpec.describe Item, type: :model do
         create(:transaction, invoice: invoice_3, result: "failed")
         create(:transaction, invoice: invoice_3)
         create(:transaction, invoice: invoice_4, result: "failed")
-        create(:invoice_item, item: item_1, invoice: invoice_2)
-        create(:invoice_item, item: item_1, invoice: invoice_3)
-        create(:invoice_item, item: item_2, invoice: invoice_4)
-        create(:invoice_item, item: item_2, invoice: invoice_4)
-        create(:invoice_item, item: item_3, invoice: invoice_1)
-        create(:invoice_item, item: item_3, invoice: invoice_1)
+        create(:invoice_item, item: item_1, invoice: invoice_2, quantity: 1, unit_price: 10000)
+        create(:invoice_item, item: item_1, invoice: invoice_3, quantity: 2, unit_price: 3000)
+        create(:invoice_item, item: item_2, invoice: invoice_4, quantity: 15, unit_price: 14000)
+        create(:invoice_item, item: item_2, invoice: invoice_4, quantity: 20, unit_price: 15000)
+        create(:invoice_item, item: item_3, invoice: invoice_1, quantity: 5, unit_price: 5000)
+        create(:invoice_item, item: item_3, invoice: invoice_1, quantity: 3, unit_price: 4000)
 
-        expect(Item.most_revenue).to eq([item_3, item_1, item_2])
-        expect(Item.most_revenue(2)).to eq([item_3, item_1])
+        expect(Item.most_revenue).to eq([item_3, item_1])
+        expect(Item.most_revenue(1)).to eq([item_3])
       end
     end
   end
