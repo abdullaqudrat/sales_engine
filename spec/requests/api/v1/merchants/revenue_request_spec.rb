@@ -35,6 +35,16 @@ describe "Merchants API" do
     expect(top_merchants[0]["id"]).to eq(m_3.id)
     expect(top_merchants[1]["id"]).to eq(m_1.id)
     expect(top_merchants[2]["id"]).to eq(m_5.id)
+
+    get "/api/v1/merchants/most_revenue"
+
+    top_merchants = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(top_merchants[0]["id"]).to eq(m_3.id)
+    expect(top_merchants[1]["id"]).to eq(m_1.id)
+    expect(top_merchants[2]["id"]).to eq(m_5.id)
+    expect(top_merchants[3]["id"]).to eq(m_2.id)
   end
   it "can get total revenue of merchants by date"  do
     m_1, m_2, m_3, m_4, m_5 = create_list(:merchant, 5)
