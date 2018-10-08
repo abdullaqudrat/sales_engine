@@ -184,5 +184,17 @@ RSpec.describe Merchant, type: :model do
         expect(Merchant.favorite_customer(merchant.id)).to eq(c_2)
       end
     end
+    describe "::customers_with_pending_invoices" do
+      it "should return a collection of customers which have pending invoices for merchant" do
+        merchant = create(:merchant)
+        c_1, c_2 = create_list(:customer, 2)
+        in_5 = create(:invoice, merchant: merchant, customer: c_2)
+        in_6 = create(:invoice, merchant: merchant, customer: c_1)
+        t_1 = create(:transaction, invoice: in_5, result: "failed")
+        t_2 = create(:transaction, invoice: in_6)
+
+        expect(Merchant.customers_with_pending_invoices(merchant.id)).to eq([c_2])
+      end
+    end
   end
 end
