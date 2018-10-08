@@ -15,7 +15,7 @@ describe 'Items API' do
     create(:invoice_item, item: item_1, invoice: invoice_2, quantity: 10)
     create(:invoice_item, item: item_1, invoice: invoice_3, quantity: 20)
     create(:invoice_item, item: item_1, invoice: invoice_4, quantity: 100)
-    create(:invoice_item, item: item_1, invoice: invoice_2, quantity: 10)
+    create(:invoice_item, item: item_1, invoice: invoice_2, quantity: 9)
     create(:invoice_item, item: item_1, invoice: invoice_1, quantity: 1)
 
     get "/api/v1/items/#{item_1.id}/best_day"
@@ -24,6 +24,6 @@ describe 'Items API' do
 
     date = JSON.parse(response.body)
 
-    expect(date["best_day"]).to eq('2018-09-02T12:00:00.000Z')
+    expect(date["best_day"]).to eq("2018-09-03T12:00:00.000Z")
   end
 end
