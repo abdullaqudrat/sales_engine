@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Merchants API" do
-  it "can get total revenue of merchant"  do
+  it "can get favorite_customer of merchant"  do
     merchant = create(:merchant)
     c_1, c_2 = create_list(:customer, 2)
     i_1 = create(:item, unit_price: 9000, merchant: merchant)
