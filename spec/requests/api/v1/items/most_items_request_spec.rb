@@ -27,7 +27,7 @@ describe 'Items API' do
 
     expect(Item.count).to eq(3)
     expect(items.count).to eq(1)
-    expect(items["id"]).to eq(item_1.id)
+    expect(items[0]["id"]).to eq(item_1.id)
 
     get "/api/v1/items/most_items"
 
