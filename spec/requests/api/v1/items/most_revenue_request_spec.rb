@@ -17,9 +17,19 @@ describe "Items API" do
     create(:invoice_item, item: item_3, invoice: invoice_1, quantity: 5, unit_price: 5000)
     create(:invoice_item, item: item_3, invoice: invoice_1, quantity: 3, unit_price: 4000)
 
-    quantity = 2
+    quantity = 1
 
     get "/api/v1/items/most_revenue?quantity=#{quantity}"
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body)
+
+    expect(Item.count).to eq(3)
+    expect(items.count).to eq(1)
+    expect(items[0]["id"]).to eq(item_3.id)
+
+    get "/api/v1/items/most_revenue"
 
     expect(response).to be_successful
 

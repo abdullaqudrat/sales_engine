@@ -35,5 +35,15 @@ describe "Merchants API" do
     expect(top_merchants[0]["id"]).to eq(m_5.id)
     expect(top_merchants[1]["id"]).to eq(m_1.id)
     expect(top_merchants[2]["id"]).to eq(m_3.id)
+
+    get "/api/v1/merchants/most_items"
+
+    top_merchants = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(top_merchants[0]["id"]).to eq(m_5.id)
+    expect(top_merchants[1]["id"]).to eq(m_1.id)
+    expect(top_merchants[2]["id"]).to eq(m_3.id)
+    expect(top_merchants[3]["id"]).to eq(m_2.id)
   end
 end
