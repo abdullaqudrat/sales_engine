@@ -56,4 +56,20 @@ class Merchant < ApplicationRecord
     .limit(1)
     .first
   end
+
+  def self.customers_with_pending_invoices(merchant_id)
+    Customer.find_by_sql(
+      "SELECT customers.* FROM customers
+      INNER JOIN invoices ON customers.id=invoices.customer_id
+      INNER JOIN merchants ON merchants.id=invoices.merchant_id
+      INNER JOIN transactions ON invoices.id=transactions.invoice_id
+      WHERE merchants.id=#{merchant_id} AND transactions.result='failed'
+      EXCEPT
+      SELECT customers.* FROM customers
+      INNER JOIN invoices ON customers.id=invoices.customer_id
+      INNER JOIN merchants ON merchants.id=invoices.merchant_id
+      INNER JOIN transactions ON invoices.id=transactions.invoice_id
+      WHERE merchants.id=#{merchant_id} AND NOT transactions.result='failed'"
+    )
+  end
 end
