@@ -1,4 +1,4 @@
-# README
+# Sales Engine
 
 Sales Engine is an app that uses sales data from Etsy to perform sales analytics and generate API request with the data.
 
