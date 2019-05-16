@@ -247,6 +247,10 @@ Each data category offera `find` finders to return a single record. The finder w
 }
 ```
 
+#### Find All Endpoints
+
+Each data category offers `find_all` finders to return all the records that match the given parameter. The finder works with any of the attributes defined on the data type and is always case insensitive.
+
 ##### Request Parameters
 
 * Customers `GET /api/v1/customers/find_all?parameter`
