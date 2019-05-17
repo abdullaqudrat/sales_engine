@@ -1,0 +1,636 @@
+<h1><a id="Sales_Engine_0"></a>Sales Engine</h1>
+<p>Sales Engine is an app that uses sales data from Etsy to perform sales analytics and generate API request with the data.</p>
+
+<h3><a id="API_Endpoints_78"></a>API Endpoints</h3>
+<h4><a id="Index_Record_Endpoints_80"></a>Index Record Endpoints</h4>
+<p>Each data category includes an <code>index</code> action which<br>
+renders a JSON representation of all the appropriate records:</p>
+<ul>
+<li>Customers <code>GET /api/v1/merchants</code></li>
+<li>Merchants <code>GET /api/v1/merchants</code></li>
+<li>Items <code>GET /api/v1/items</code></li>
+<li>Invoices <code>GET /api/v1/invoices</code></li>
+<li>Invoice-items <code>GET /api/v1/invoice_items</code></li>
+<li>Transactions <code>GET /api/v1/transactions</code></li>
+</ul>
+<h5><a id="Example_Request_URL_92"></a>Example Request URL</h5>
+<p><strong>GET <code>/api/v1/customers</code></strong></p>
+<ul>
+<li>This endpoint will return a list of all specified resources in the database along with their attributes.</li>
+</ul>
+<pre><code class="language-json">[
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+    "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Eileen"</span></span>,
+    "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stamm"</span></span>,
+  },
+  {
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+    "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Erin"</span></span>,
+    "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
+  },
+  ...
+]
+</code></pre>
+<h4><a id="Show_Record_Endpoints_113"></a>Show Record Endpoints</h4>
+<p>Each data category includes an <code>show</code> action which<br>
+renders a JSON representation of all the appropriate records:</p>
+<ul>
+<li>Customers <code>GET /api/v1/customers/:id</code></li>
+<li>Merchants <code>GET /api/v1/merchants/:id</code></li>
+<li>Items <code>GET /api/v1/items/:id</code></li>
+<li>Invoices <code>GET /api/v1/invoices/:id</code></li>
+<li>Invoice-items <code>GET /api/v1/invoice_items/:id</code></li>
+<li>Transactions <code>GET /api/v1/transactions/:id</code></li>
+</ul>
+<h5><a id="Example_Request_URL_125"></a>Example Request URL</h5>
+<p><strong>GET <code>/api/v1/customers/:id</code></strong></p>
+<ul>
+<li>This endpoint will return a selected customer in the database along with it’s attributes when an id is given</li>
+</ul>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+  "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Erin"</span></span>,
+  "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
+}
+</code></pre>
+<h4><a id="Find_Endpoints_138"></a>Find Endpoints</h4>
+<p>Each data category offera <code>find</code> finders to return a single record. The finder works with any of the attributes defined on the data type and is always case insensitive.</p>
+<h5><a id="Request_Parameters_142"></a>Request Parameters</h5>
+<ul>
+<li>Customers <code>GET /api/v1/customers/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary key</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Merchants <code>GET /api/v1/merchants/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Items <code>GET /api/v1/items/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>description</td>
+<td>search based on the desc attribute</td>
+</tr>
+<tr>
+<td>merchant_id</td>
+<td>search based on the merchant id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Invoices <code>GET /api/v1/invoices/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>status</td>
+<td>search based on status (ex. shipped)</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>search based on the customer id</td>
+</tr>
+<tr>
+<td>merchant_id</td>
+<td>search based on the merchant id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Invoice-items <code>GET /api/v1/invoice_items/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>search based on quantity (ex. 5)</td>
+</tr>
+<tr>
+<td>unit_price</td>
+<td>search based on price (ex. 13.99)</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>search based on the invoice id</td>
+</tr>
+<tr>
+<td>item_id</td>
+<td>search based on the item id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Transactions <code>GET /api/v1/transactions/find?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>result</td>
+<td>search based on result (ex. success or failed)</td>
+</tr>
+<tr>
+<td>credit_card_number</td>
+<td>search based on cc # (ex. 4654405418249632)</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>search based on the invoice id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5><a id="Example_Request_URL_226"></a>Example Request URL</h5>
+<p><code>GET /api/v1/customers/find?first_name=Erin</code></p>
+<h5><a id="JSON_Output_230"></a>JSON Output</h5>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+  "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Erin"</span></span>,
+  "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
+}
+</code></pre>
+<h4><a id="Find_All_Endpoints_240"></a>Find All Endpoints</h4>
+<p>Each data category offers <code>find_all</code> finders to return all the records that match the given parameter. The finder works with any of the attributes defined on the data type and is always case insensitive.</p>
+<h5><a id="Request_Parameters_244"></a>Request Parameters</h5>
+<ul>
+<li>Customers <code>GET /api/v1/customers/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary key</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Merchants <code>GET /api/v1/merchants/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Items <code>GET /api/v1/items/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the primary id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>search based on the name attribute</td>
+</tr>
+<tr>
+<td>description</td>
+<td>search based on the desc attribute</td>
+</tr>
+<tr>
+<td>merchant_id</td>
+<td>search based on the merchant id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Invoices <code>GET /api/v1/invoices/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>status</td>
+<td>search based on status (ex. shipped)</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>search based on the customer id</td>
+</tr>
+<tr>
+<td>merchant_id</td>
+<td>search based on the merchant id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Invoice-items <code>GET /api/v1/invoice_items/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>search based on quantity (ex. 5)</td>
+</tr>
+<tr>
+<td>unit_price</td>
+<td>search based on price (ex. 13.99)</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>search based on the invoice id</td>
+</tr>
+<tr>
+<td>item_id</td>
+<td>search based on the item id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>Transactions <code>GET /api/v1/transactions/find_all?parameter</code></li>
+</ul>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>search based on the id</td>
+</tr>
+<tr>
+<td>result</td>
+<td>search based on result (ex. success or failed)</td>
+</tr>
+<tr>
+<td>credit_card_number</td>
+<td>search based on cc # (ex. 4654405418249632)</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>search based on the invoice id</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>search based on created_at timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>search based on updated_at timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h5><a id="Example_Request_URL_328"></a>Example Request URL</h5>
+<p><code>GET /api/v1/customers/find_all?last_name=Stoll</code></p>
+<h5><a id="JSON_Output_332"></a>JSON Output</h5>
+<pre><code class="language-json">[  
+  {
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+  "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Erin"</span></span>,
+  "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
+  },
+  {
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2112"</span></span>,
+  "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Ryan"</span></span>,
+  "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
+  }
+]
+</code></pre>
+<p>Note: Although this search may return one record, it still comes back in an array.</p>
+<h4><a id="Random_Endpoints_352"></a>Random Endpoints</h4>
+<p>Will return a random resource in a selected category</p>
+<ul>
+<li>Customers <code>GET /api/v1/customers/random</code></li>
+<li>Merchants <code>GET /api/v1/merchants/random</code></li>
+<li>Items <code>GET /api/v1/items/random</code></li>
+<li>Invoices <code>GET /api/v1/invoices/random</code></li>
+<li>Invoice-items <code>GET /api/v1/invoice_items/random</code></li>
+<li>Transactions <code>GET /api/v1/transactions/random</code></li>
+</ul>
+<h5><a id="Example_Request_URL_363"></a>Example Request URL</h5>
+<p>`GET api/v1/merchants/random</p>
+<h5><a id="JSON_Output_367"></a>JSON Output</h5>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">50</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Nader-Hyatt"</span>
+</span>}
+</code></pre>
+<h3><a id="Relationship_Endpointsdom_376"></a>Relationship Endpointsdom`</h3>
+<p>These endpoints will show the relationship data from a given resource ID.</p>
+<h4><a id="Merchants_381"></a>Merchants</h4>
+<ul>
+<li><code>GET /api/v1/merchants/:id/items</code> returns a collection of items associated with that merchant</li>
+<li><code>GET /api/v1/merchants/:id/invoices</code> returns a collection of invoices associated with that merchant from their known orders</li>
+</ul>
+<h4><a id="Invoices_386"></a>Invoices</h4>
+<ul>
+<li><code>GET /api/v1/invoices/:id/transactions</code> returns a collection of associated transactions</li>
+<li><code>GET /api/v1/invoices/:id/invoice_items</code> returns a collection of associated invoice items</li>
+<li><code>GET /api/v1/invoices/:id/items</code> returns a collection of associated items</li>
+<li><code>GET /api/v1/invoices/:id/customer</code> returns the associated customer</li>
+<li><code>GET /api/v1/invoices/:id/merchant</code> returns the associated merchant</li>
+</ul>
+<h4><a id="Invoice_Items_394"></a>Invoice Items</h4>
+<ul>
+<li><code>GET /api/v1/invoice_items/:id/invoice</code> returns the associated invoice</li>
+<li><code>GET /api/v1/invoice_items/:id/item</code> returns the associated item</li>
+</ul>
+<h4><a id="Items_399"></a>Items</h4>
+<ul>
+<li><code>GET /api/v1/items/:id/invoice_items</code> returns a collection of associated invoice items</li>
+<li><code>GET /api/v1/items/:id/merchant</code> returns the associated merchant</li>
+</ul>
+<h4><a id="Transactions_404"></a>Transactions</h4>
+<ul>
+<li><code>GET /api/v1/transactions/:id/invoice</code> returns the associated invoice</li>
+</ul>
+<h4><a id="Customers_408"></a>Customers</h4>
+<ul>
+<li><code>GET /api/v1/customers/:id/invoices</code> returns a collection of associated invoices</li>
+<li><code>GET /api/v1/customers/:id/transactions</code> returns a collection of associated transactions</li>
+</ul>
+<h5><a id="Example_Request_URL_413"></a>Example Request URL</h5>
+<p><code>GET api/v1/customers/1/transactions</code></p>
+<h5><a id="JSON_Output_417"></a>JSON Output</h5>
+<pre><code class="language-json">[
+  {
+    "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">result</span>":<span class="hljs-value"><span class="hljs-string">"success"</span></span>,
+    "<span class="hljs-attribute">credit_card_number</span>":<span class="hljs-value"><span class="hljs-string">"4654405418249632"</span></span>,
+    "<span class="hljs-attribute">invoice_id</span>":<span class="hljs-value"><span class="hljs-number">1</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">3</span></span>,
+    "<span class="hljs-attribute">result</span>":<span class="hljs-value"><span class="hljs-string">"failed"</span></span>,
+    "<span class="hljs-attribute">credit_card_number</span>":<span class="hljs-value"><span class="hljs-string">"4654405418249632"</span></span>,
+    "<span class="hljs-attribute">invoice_id</span>":<span class="hljs-value"><span class="hljs-number">101</span>
+  </span>},
+  ...
+]
+</code></pre>
+<h3><a id="Business_Intelligence_Endpoints_437"></a>Business Intelligence Endpoints</h3>
+<p>These are several endpoints that use the business intelligence aspect of the app.</p>
+<h4><a id="All_Merchants_441"></a>All Merchants</h4>
+<ul>
+<li><code>GET /api/v1/merchants/most_revenue?quantity=x</code> returns the top <code>x</code> merchants ranked by total revenue</li>
+<li><code>GET /api/v1/merchants/most_items?quantity=x</code> returns the top <code>x</code> merchants ranked by total number of items sold</li>
+<li><code>GET /api/v1/merchants/revenue?date=x</code> returns the total revenue for date <code>x</code> across all merchants</li>
+</ul>
+<h4><a id="Single_Merchant_447"></a>Single Merchant</h4>
+<ul>
+<li><code>GET /api/v1/merchants/:id/revenue</code> returns the total revenue for that merchant across all transactions</li>
+<li><code>GET /api/v1/merchants/:id/revenue?date=x</code> returns the total revenue for that merchant for a specific invoice date <code>x</code></li>
+<li><code>GET /api/v1/merchants/:id/favorite_customer</code> returns the customer who has conducted the most total number of successful transactions.</li>
+<li><code>GET /api/v1/merchants/:id/customers_with_pending_invoices</code> returns a collection of customers which have pending (unpaid) invoices</li>
+</ul>
+<h4><a id="Items_454"></a>Items</h4>
+<ul>
+<li><code>GET /api/v1/items/most_revenue?quantity=x</code> returns the top <code>x</code> items ranked by total revenue generated</li>
+<li><code>GET /api/v1/items/most_items?quantity=x</code> returns the top <code>x</code> item instances ranked by total number sold</li>
+<li><code>GET /api/v1/items/:id/best_day</code> returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.</li>
+</ul>
+<h4><a id="Customers_460"></a>Customers</h4>
+<ul>
+<li><code>GET /api/v1/customers/:id/favorite_merchant</code> returns a merchant where the customer has conducted the most successful transactions</li>
+</ul>
