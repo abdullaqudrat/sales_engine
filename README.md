@@ -17,19 +17,10 @@ Sales Engine is an app that uses sales data from Etsy to perform sales analytics
   - [Index Record Endpoints](https://github.com/abdullaqudrat/sales_engine#index-record-endpoints)
   - [Show Record Endpoints](https://github.com/abdullaqudrat/sales_engine#show-record-endpoints)
   - [Find Endpoints](https://github.com/abdullaqudrat/sales_engine#find-endpoints)
+  - [Find All Endpoints](https://github.com/abdullaqudrat/sales_engine#find-all-endpoints)
   - [Random Endpoints](https://github.com/abdullaqudrat/sales_engine#random-endpoints)
-  - [`/api/v1/invoice_items` Endpoints](https://github.com/abdullaqudrat/sales_engine#apiv1invoice-items-endpoints)
-  - [`/api/v1/transactions` Endpoints](https://github.com/abdullaqudrat/sales_engine#apiv1transactions-endpoints)
-
-
-### sample queries
-
-* "/api/v1/items" sends all the existing items
-
-* "/api/v1/customers/find?id=1" sends the record of the customer with ID: 1
-
-* "/api/v1/merchants/most_revenue" sends the merchant with the most revenue generated
-
+  - [Relationship Endpoints](https://github.com/abdullaqudrat/sales_engine#relationship-endpoints)
+  - [Business Intelligence Endpoints](https://github.com/abdullaqudrat/sales_engine#business-intelligence-endpoints)
 
 ### Purpose
 
@@ -359,7 +350,7 @@ Each data category offers `find_all` finders to return all the records that matc
 Note: Although this search may return one record, it still comes back in an array.
 
 
-#### Random Endpoint
+#### Random Endpoints
 
 Will return a random resource in a selected category
 
@@ -374,6 +365,55 @@ Will return a random resource in a selected category
 
 `api/v1/customers/random`
 
+
+##### JSON Output
+
+```json
+{
+  "id": 50,
+  "name": "Nader-Hyatt"
+}
+```
+
+### Relationship Endpoints
+
+These endpoints will show the relationship data from a given resource ID.
+
+#### Merchants
+
+* `GET /api/v1/merchants/:id/items` returns a collection of items associated with that merchant
+* `GET /api/v1/merchants/:id/invoices` returns a collection of invoices associated with that merchant from their known orders
+
+#### Invoices
+
+* `GET /api/v1/invoices/:id/transactions` returns a collection of associated transactions
+* `GET /api/v1/invoices/:id/invoice_items` returns a collection of associated invoice items
+* `GET /api/v1/invoices/:id/items` returns a collection of associated items
+* `GET /api/v1/invoices/:id/customer` returns the associated customer
+* `GET /api/v1/invoices/:id/merchant` returns the associated merchant
+
+#### Invoice Items
+
+* `GET /api/v1/invoice_items/:id/invoice` returns the associated invoice
+* `GET /api/v1/invoice_items/:id/item` returns the associated item
+
+#### Items
+
+* `GET /api/v1/items/:id/invoice_items` returns a collection of associated invoice items
+* `GET /api/v1/items/:id/merchant` returns the associated merchant
+
+#### Transactions
+
+* `GET /api/v1/transactions/:id/invoice` returns the associated invoice
+
+#### Customers
+
+* `GET /api/v1/customers/:id/invoices` returns a collection of associated invoices
+* `GET /api/v1/customers/:id/transactions` returns a collection of associated transactions
+
+##### Example Request URL
+
+`api/v1/customers/100/transactions`
 
 ##### JSON Output
 
