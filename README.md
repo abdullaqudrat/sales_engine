@@ -363,8 +363,7 @@ Will return a random resource in a selected category
 
 ##### Example Request URL
 
-`api/v1/customers/random`
-
+`GET api/v1/merchants/random
 
 ##### JSON Output
 
@@ -375,7 +374,8 @@ Will return a random resource in a selected category
 }
 ```
 
-### Relationship Endpoints
+### Relationship Endpointsdom`
+
 
 These endpoints will show the relationship data from a given resource ID.
 
@@ -413,13 +413,51 @@ These endpoints will show the relationship data from a given resource ID.
 
 ##### Example Request URL
 
-`api/v1/customers/100/transactions`
+`GET api/v1/customers/1/transactions`
 
 ##### JSON Output
 
 ```json
-{
-  "id": 50,
-  "name": "Nader-Hyatt"
-}
+[
+  {
+    "id":1,
+    "result":"success",
+    "credit_card_number":"4654405418249632",
+    "invoice_id":1
+  },
+  {
+    "id":3,
+    "result":"failed",
+    "credit_card_number":"4654405418249632",
+    "invoice_id":101
+  },
+  ...
+]
 ```
+
+### Business Intelligence Endpoints
+
+These are several endpoints that use the business intelligence aspect of the app.
+
+#### All Merchants
+
+* `GET /api/v1/merchants/most_revenue?quantity=x` returns the top `x` merchants ranked by total revenue
+* `GET /api/v1/merchants/most_items?quantity=x` returns the top `x` merchants ranked by total number of items sold
+* `GET /api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
+
+#### Single Merchant
+
+* `GET /api/v1/merchants/:id/revenue` returns the total revenue for that merchant across all transactions
+* `GET /api/v1/merchants/:id/revenue?date=x` returns the total revenue for that merchant for a specific invoice date `x`
+* `GET /api/v1/merchants/:id/favorite_customer` returns the customer who has conducted the most total number of successful transactions.
+* `GET /api/v1/merchants/:id/customers_with_pending_invoices` returns a collection of customers which have pending (unpaid) invoices
+
+#### Items
+
+* `GET /api/v1/items/most_revenue?quantity=x` returns the top `x` items ranked by total revenue generated
+* `GET /api/v1/items/most_items?quantity=x` returns the top `x` item instances ranked by total number sold
+* `GET /api/v1/items/:id/best_day` returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.
+
+#### Customers
+
+* `GET /api/v1/customers/:id/favorite_merchant` returns a merchant where the customer has conducted the most successful transactions
