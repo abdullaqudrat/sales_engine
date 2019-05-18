@@ -1,8 +1,32 @@
-<h1><a id="Sales_Engine_0"></a>Sales Engine</h1>
+<h1><a id="Sales_Engine_0"></a>Sales Engine - hosted on HEROKU</h1>
 <p>Sales Engine is an app that uses sales data from Etsy to perform sales analytics and generate API request with the data.</p>
+<h3><a id="Purpose_4"></a>Purpose</h3>
+<ul>
+<li>
+<p>Parsing external information, in this case, many CSV files of sales data, into the app’s database.</p>
+</li>
+<li>
+<p>Using the MVC architectural pattern in Rails. The models contain the business logic and represent the sales data as objects. The controllers respond to the user input and performs interactions on the data model objects. The views displays the model data, and for this app, the controllers are the views that render the data in JSON format.</p>
+</li>
+<li>
+<p>Bulding a Rails API with RESTful web services architetural style.</p>
+</li>
+<li>
+<p>Using SQL and the Rails ORM(object relational mapping) - ActiveRecord - to access and analyze sales data in the app’s database.</p>
+</li>
+</ul>
+<h3><a id="API_Endpoints_14"></a>API Endpoints</h3>
+<ul>
+<li>Index Record Endpoints</li>
+<li>Show Record Endpoints</li>
+<li>Find Endpoints</li>
+<li>Find all Record Endpoints</li>
+<li>Random Endpoints</li>
+<li>Relationship Endpoints</li>
+<li>Business Endpoints</li>
 
-<h3><a id="API_Endpoints_78"></a>API Endpoints</h3>
-<h4><a id="Index_Record_Endpoints_80"></a>Index Record Endpoints</h4>
+</ul>
+<h4><a id="Index_Record_Endpoints_25"></a>Index Record Endpoints</h4>
 <p>Each data category includes an <code>index</code> action which<br>
 renders a JSON representation of all the appropriate records:</p>
 <ul>
@@ -13,7 +37,7 @@ renders a JSON representation of all the appropriate records:</p>
 <li>Invoice-items <code>GET /api/v1/invoice_items</code></li>
 <li>Transactions <code>GET /api/v1/transactions</code></li>
 </ul>
-<h5><a id="Example_Request_URL_92"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_37"></a>Example Request URL</h5>
 <p><strong>GET <code>/api/v1/customers</code></strong></p>
 <ul>
 <li>This endpoint will return a list of all specified resources in the database along with their attributes.</li>
@@ -32,7 +56,7 @@ renders a JSON representation of all the appropriate records:</p>
   ...
 ]
 </code></pre>
-<h4><a id="Show_Record_Endpoints_113"></a>Show Record Endpoints</h4>
+<h4><a id="Show_Record_Endpoints_58"></a>Show Record Endpoints</h4>
 <p>Each data category includes an <code>show</code> action which<br>
 renders a JSON representation of all the appropriate records:</p>
 <ul>
@@ -43,7 +67,7 @@ renders a JSON representation of all the appropriate records:</p>
 <li>Invoice-items <code>GET /api/v1/invoice_items/:id</code></li>
 <li>Transactions <code>GET /api/v1/transactions/:id</code></li>
 </ul>
-<h5><a id="Example_Request_URL_125"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_70"></a>Example Request URL</h5>
 <p><strong>GET <code>/api/v1/customers/:id</code></strong></p>
 <ul>
 <li>This endpoint will return a selected customer in the database along with it’s attributes when an id is given</li>
@@ -54,9 +78,9 @@ renders a JSON representation of all the appropriate records:</p>
   "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
 }
 </code></pre>
-<h4><a id="Find_Endpoints_138"></a>Find Endpoints</h4>
+<h4><a id="Find_Endpoints_83"></a>Find Endpoints</h4>
 <p>Each data category offera <code>find</code> finders to return a single record. The finder works with any of the attributes defined on the data type and is always case insensitive.</p>
-<h5><a id="Request_Parameters_142"></a>Request Parameters</h5>
+<h5><a id="Request_Parameters_87"></a>Request Parameters</h5>
 <ul>
 <li>Customers <code>GET /api/v1/customers/find?parameter</code></li>
 </ul>
@@ -283,18 +307,18 @@ renders a JSON representation of all the appropriate records:</p>
 </tbody>
 </table>
 <hr>
-<h5><a id="Example_Request_URL_226"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_171"></a>Example Request URL</h5>
 <p><code>GET /api/v1/customers/find?first_name=Erin</code></p>
-<h5><a id="JSON_Output_230"></a>JSON Output</h5>
+<h5><a id="JSON_Output_175"></a>JSON Output</h5>
 <pre><code class="language-json">{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
   "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Erin"</span></span>,
   "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Stoll"</span></span>,
 }
 </code></pre>
-<h4><a id="Find_All_Endpoints_240"></a>Find All Endpoints</h4>
+<h4><a id="Find_All_Endpoints_185"></a>Find All Endpoints</h4>
 <p>Each data category offers <code>find_all</code> finders to return all the records that match the given parameter. The finder works with any of the attributes defined on the data type and is always case insensitive.</p>
-<h5><a id="Request_Parameters_244"></a>Request Parameters</h5>
+<h5><a id="Request_Parameters_189"></a>Request Parameters</h5>
 <ul>
 <li>Customers <code>GET /api/v1/customers/find_all?parameter</code></li>
 </ul>
@@ -521,9 +545,9 @@ renders a JSON representation of all the appropriate records:</p>
 </tbody>
 </table>
 <hr>
-<h5><a id="Example_Request_URL_328"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_273"></a>Example Request URL</h5>
 <p><code>GET /api/v1/customers/find_all?last_name=Stoll</code></p>
-<h5><a id="JSON_Output_332"></a>JSON Output</h5>
+<h5><a id="JSON_Output_277"></a>JSON Output</h5>
 <pre><code class="language-json">[  
   {
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
@@ -538,7 +562,7 @@ renders a JSON representation of all the appropriate records:</p>
 ]
 </code></pre>
 <p>Note: Although this search may return one record, it still comes back in an array.</p>
-<h4><a id="Random_Endpoints_352"></a>Random Endpoints</h4>
+<h4><a id="Random_Endpoints_296"></a>Random Endpoints</h4>
 <p>Will return a random resource in a selected category</p>
 <ul>
 <li>Customers <code>GET /api/v1/customers/random</code></li>
@@ -548,22 +572,22 @@ renders a JSON representation of all the appropriate records:</p>
 <li>Invoice-items <code>GET /api/v1/invoice_items/random</code></li>
 <li>Transactions <code>GET /api/v1/transactions/random</code></li>
 </ul>
-<h5><a id="Example_Request_URL_363"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_307"></a>Example Request URL</h5>
 <p>`GET api/v1/merchants/random</p>
-<h5><a id="JSON_Output_367"></a>JSON Output</h5>
+<h5><a id="JSON_Output_311"></a>JSON Output</h5>
 <pre><code class="language-json">{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">50</span></span>,
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Nader-Hyatt"</span>
 </span>}
 </code></pre>
-<h3><a id="Relationship_Endpointsdom_376"></a>Relationship Endpointsdom`</h3>
+<h3><a id="Relationship_Endpoints_320"></a>Relationship Endpoints</h3>
 <p>These endpoints will show the relationship data from a given resource ID.</p>
-<h4><a id="Merchants_381"></a>Merchants</h4>
+<h4><a id="Merchants_324"></a>Merchants</h4>
 <ul>
 <li><code>GET /api/v1/merchants/:id/items</code> returns a collection of items associated with that merchant</li>
 <li><code>GET /api/v1/merchants/:id/invoices</code> returns a collection of invoices associated with that merchant from their known orders</li>
 </ul>
-<h4><a id="Invoices_386"></a>Invoices</h4>
+<h4><a id="Invoices_329"></a>Invoices</h4>
 <ul>
 <li><code>GET /api/v1/invoices/:id/transactions</code> returns a collection of associated transactions</li>
 <li><code>GET /api/v1/invoices/:id/invoice_items</code> returns a collection of associated invoice items</li>
@@ -571,28 +595,28 @@ renders a JSON representation of all the appropriate records:</p>
 <li><code>GET /api/v1/invoices/:id/customer</code> returns the associated customer</li>
 <li><code>GET /api/v1/invoices/:id/merchant</code> returns the associated merchant</li>
 </ul>
-<h4><a id="Invoice_Items_394"></a>Invoice Items</h4>
+<h4><a id="Invoice_Items_337"></a>Invoice Items</h4>
 <ul>
 <li><code>GET /api/v1/invoice_items/:id/invoice</code> returns the associated invoice</li>
 <li><code>GET /api/v1/invoice_items/:id/item</code> returns the associated item</li>
 </ul>
-<h4><a id="Items_399"></a>Items</h4>
+<h4><a id="Items_342"></a>Items</h4>
 <ul>
 <li><code>GET /api/v1/items/:id/invoice_items</code> returns a collection of associated invoice items</li>
 <li><code>GET /api/v1/items/:id/merchant</code> returns the associated merchant</li>
 </ul>
-<h4><a id="Transactions_404"></a>Transactions</h4>
+<h4><a id="Transactions_347"></a>Transactions</h4>
 <ul>
 <li><code>GET /api/v1/transactions/:id/invoice</code> returns the associated invoice</li>
 </ul>
-<h4><a id="Customers_408"></a>Customers</h4>
+<h4><a id="Customers_351"></a>Customers</h4>
 <ul>
 <li><code>GET /api/v1/customers/:id/invoices</code> returns a collection of associated invoices</li>
 <li><code>GET /api/v1/customers/:id/transactions</code> returns a collection of associated transactions</li>
 </ul>
-<h5><a id="Example_Request_URL_413"></a>Example Request URL</h5>
+<h5><a id="Example_Request_URL_356"></a>Example Request URL</h5>
 <p><code>GET api/v1/customers/1/transactions</code></p>
-<h5><a id="JSON_Output_417"></a>JSON Output</h5>
+<h5><a id="JSON_Output_360"></a>JSON Output</h5>
 <pre><code class="language-json">[
   {
     "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -609,28 +633,67 @@ renders a JSON representation of all the appropriate records:</p>
   ...
 ]
 </code></pre>
-<h3><a id="Business_Intelligence_Endpoints_437"></a>Business Intelligence Endpoints</h3>
+<h3><a id="Business_Intelligence_Endpoints_380"></a>Business Intelligence Endpoints</h3>
 <p>These are several endpoints that use the business intelligence aspect of the app.</p>
-<h4><a id="All_Merchants_441"></a>All Merchants</h4>
+<h4><a id="All_Merchants_384"></a>All Merchants</h4>
 <ul>
 <li><code>GET /api/v1/merchants/most_revenue?quantity=x</code> returns the top <code>x</code> merchants ranked by total revenue</li>
 <li><code>GET /api/v1/merchants/most_items?quantity=x</code> returns the top <code>x</code> merchants ranked by total number of items sold</li>
 <li><code>GET /api/v1/merchants/revenue?date=x</code> returns the total revenue for date <code>x</code> across all merchants</li>
 </ul>
-<h4><a id="Single_Merchant_447"></a>Single Merchant</h4>
+<h5><a id="Example_Request_URL_390"></a>Example Request URL</h5>
+<p><code>GET api/v1/merchants/most_revenue?quantity=3</code></p>
+<h5><a id="JSON_Output_394"></a>JSON Output</h5>
+<pre><code class="language-json">[
+ {
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">50</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Nader-Hyatt"</span>
+ </span>},
+ {
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">22</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"HelioCat"</span>
+ </span>},
+ {
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">99</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Aarons Furniture"</span>
+ </span>}
+]
+</code></pre>
+<h4><a id="Single_Merchant_413"></a>Single Merchant</h4>
 <ul>
 <li><code>GET /api/v1/merchants/:id/revenue</code> returns the total revenue for that merchant across all transactions</li>
 <li><code>GET /api/v1/merchants/:id/revenue?date=x</code> returns the total revenue for that merchant for a specific invoice date <code>x</code></li>
 <li><code>GET /api/v1/merchants/:id/favorite_customer</code> returns the customer who has conducted the most total number of successful transactions.</li>
 <li><code>GET /api/v1/merchants/:id/customers_with_pending_invoices</code> returns a collection of customers which have pending (unpaid) invoices</li>
 </ul>
-<h4><a id="Items_454"></a>Items</h4>
+<h5><a id="Example_Request_URL_420"></a>Example Request URL</h5>
+<p><code>GET /api/v1/merchants/1/revenue?date=2012-03-25</code></p>
+<h5><a id="JSON_Output_424"></a>JSON Output</h5>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">revenue</span>":<span class="hljs-value"><span class="hljs-string">"12817.94"</span>
+</span>}
+</code></pre>
+<h4><a id="Items_432"></a>Items</h4>
 <ul>
 <li><code>GET /api/v1/items/most_revenue?quantity=x</code> returns the top <code>x</code> items ranked by total revenue generated</li>
 <li><code>GET /api/v1/items/most_items?quantity=x</code> returns the top <code>x</code> item instances ranked by total number sold</li>
 <li><code>GET /api/v1/items/:id/best_day</code> returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.</li>
 </ul>
-<h4><a id="Customers_460"></a>Customers</h4>
+<h5><a id="Example_Request_URL_438"></a>Example Request URL</h5>
+<p><code>GET /api/v1/items/1/best_day</code></p>
+<h5><a id="JSON_Output_442"></a>JSON Output</h5>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">best_day</span>":<span class="hljs-value"><span class="hljs-string">"2012-03-19T18:54:16.000Z"</span>
+</span>}
+</code></pre>
+<h4><a id="Customers_450"></a>Customers</h4>
 <ul>
 <li><code>GET /api/v1/customers/:id/favorite_merchant</code> returns a merchant where the customer has conducted the most successful transactions</li>
 </ul>
+<h5><a id="Example_Request_URL_454"></a>Example Request URL</h5>
+<p><code>GET /api/v1/customers/66/favorite_merchant</code></p>
+<h5><a id="JSON_Output_458"></a>JSON Output</h5>
+<pre><code class="language-json">{
+  "<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-number">49</span></span>,"<span class="hljs-attribute">name</span>":<span class="hljs-value"><span class="hljs-string">"Marvin, Renner and Bauch"</span>
+</span>}
+</code></pre>
