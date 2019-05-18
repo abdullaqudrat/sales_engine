@@ -445,6 +445,29 @@ These are several endpoints that use the business intelligence aspect of the app
 * `GET /api/v1/merchants/most_items?quantity=x` returns the top `x` merchants ranked by total number of items sold
 * `GET /api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
 
+##### Example Request URL
+
+`GET api/v1/merchants/most_revenue?quantity=3`
+
+##### JSON Output
+
+```json
+[
+ {
+  "id": 50,
+  "name": "Nader-Hyatt"
+ },
+ {
+  "id": 22,
+  "name": "HelioCat"
+ },
+ {
+  "id": 99,
+  "name": "Aarons Furniture"
+ }
+]
+```
+
 #### Single Merchant
 
 * `GET /api/v1/merchants/:id/revenue` returns the total revenue for that merchant across all transactions
@@ -452,12 +475,48 @@ These are several endpoints that use the business intelligence aspect of the app
 * `GET /api/v1/merchants/:id/favorite_customer` returns the customer who has conducted the most total number of successful transactions.
 * `GET /api/v1/merchants/:id/customers_with_pending_invoices` returns a collection of customers which have pending (unpaid) invoices
 
+##### Example Request URL
+
+`GET /api/v1/merchants/1/revenue?date=2012-03-25`
+
+##### JSON Output
+
+```json
+{
+  "revenue":"12817.94"
+}
+```
+
 #### Items
 
 * `GET /api/v1/items/most_revenue?quantity=x` returns the top `x` items ranked by total revenue generated
 * `GET /api/v1/items/most_items?quantity=x` returns the top `x` item instances ranked by total number sold
 * `GET /api/v1/items/:id/best_day` returns the date with the most sales for the given item using the invoice date. If there are multiple days with equal number of sales, return the most recent day.
 
+##### Example Request URL
+
+`GET /api/v1/items/1/best_day`
+
+##### JSON Output
+
+```json
+{
+  "best_day":"2012-03-19T18:54:16.000Z"
+}
+```
+
 #### Customers
 
 * `GET /api/v1/customers/:id/favorite_merchant` returns a merchant where the customer has conducted the most successful transactions
+
+##### Example Request URL
+
+`GET /api/v1/customers/66/favorite_merchant`
+
+##### JSON Output
+
+```json
+{
+  "id":49,"name":"Marvin, Renner and Bauch"
+}
+```
