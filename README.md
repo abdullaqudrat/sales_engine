@@ -42,7 +42,7 @@ Visit deployed api at https://evening-garden-70150.herokuapp.com/
 - PostgreSQL Database
 - Heroku (for deployment)
 
-## System dependencies
+### System dependencies
 
 * 'active_model_serializers'
 * 'rspec-rails'
@@ -82,9 +82,8 @@ This API was driven by TDD and uses SimpleCov to measure test coverage.
 * Run `rails s` from the command line of the root directory to open a local server for api requests
 * Run `rspec` from the command line of the root directory to run test suite
 
----
 
-### API Endpoints
+## API Endpoints
 
 #### Index Record Endpoints
 
