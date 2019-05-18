@@ -26,11 +26,12 @@ Sales Engine is an app that uses sales data from Etsy to perform sales analytics
 
 * Parsing external information, in this case, many CSV files of sales data, into the app's database.
 
-* Using the MVC architectural pattern in Rails. The models contain the business logic and represent the sales data as objects. The controllers respond to the user input and performs interactions on the data model objects. The views displays the model data, and for this app, the controllers are the views that render the data in JSON format.
+* Using the MVC architectural pattern in Rails. The models contain the business logic and represent the sales data as objects. The controllers respond to the user input and performs interactions on the data model objects. The views displays the model data, and for this app, the controllers are the views that render the data in JSON format using 
+**ActiveModel::Serializer**.
 
 * Bulding a Rails API with RESTful web services architetural style.
 
-* Using SQL and the Rails ORM(object relational mapping) - ActiveRecord - to access and analyze sales data in the app's database.
+* Using **SQL** and the Rails ORM(object relational mapping) **ActiveRecord** to access and analyze sales data in the app's database.
 
 Visit deployed api at https://evening-garden-70150.herokuapp.com/
 (This is the base URL for all api endpoints.)
