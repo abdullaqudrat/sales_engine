@@ -60,14 +60,20 @@ git clone https://github.com/abdullaqudrat/sales_engine.git
 bundle
 rake db:{create,migrate}
 ```
- * Additionally, run `rake csv:import` to get data into your local database.
+ * Additionally, run 
+ 
+ ```
+ rake csv:import
+ ```
+ 
+ to get data into your local database.
 
 
 ### Testing
 
 This API was driven by TDD and uses SimpleCov to measure test coverage.
 
- * Other testing tools used:
+ * Testing tools used:
   - RSpec
   - Shoulda-Matchers
   - Factory_bot_rails
@@ -75,6 +81,8 @@ This API was driven by TDD and uses SimpleCov to measure test coverage.
   
 * Run `rails s` from the command line of the root directory to open a local server for api requests
 * Run `rspec` from the command line of the root directory to run test suite
+
+---
 
 ### API Endpoints
 
